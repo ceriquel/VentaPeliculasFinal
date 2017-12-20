@@ -33,4 +33,11 @@ public class ControladorListar {
         modeloListar=new ModeloListar();
         return modeloListar.getListadoPelicula();
     }
+    
+    public ArrayList<Pelicula> getListadoPeliculaCategoria(String categoria) throws SQLException{
+           
+        modeloListar=new ModeloListar();
+        return modeloListar.getListadoPeliculaCategoria(categoria);
+        
+    }
 }

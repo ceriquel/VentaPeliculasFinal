@@ -53,10 +53,23 @@ public class VistaBorrar extends javax.swing.JFrame {
     public VistaBorrar() throws SQLException {
          initComponents();
         Conexion.getInstance();
+        
+        llenarTabla();
+        
+        //jTable1.setModel(defaultTableModel);
+        //controladorListar = new ControladorListar();
+        //ArrayList<Pelicula> listPelicula=controladorListar.getListadoPeliculaEliminar();
+        //Object[] fila=new Object[2];
+        //for(int x=0; x<listPelicula.size(); x++){
+        //    fila[0]=listPelicula.get(x).getCodigo();
+        //    fila[1]=listPelicula.get(x).getNombre();
+        //    defaultTableModel.addRow(fila);
+        
+    }
+        public void llenarTabla() throws SQLException{
         defaultTableModel = new DefaultTableModel();
         defaultTableModel.addColumn("CODIGO");
         defaultTableModel.addColumn("NOMBRE");
-        
         jTable1.setModel(defaultTableModel);
         controladorListar = new ControladorListar();
         ArrayList<Pelicula> listPelicula=controladorListar.getListadoPeliculaEliminar();
@@ -90,6 +103,8 @@ public class VistaBorrar extends javax.swing.JFrame {
         jButtonVolver = new javax.swing.JButton();
         jTextFieldCodigo = new javax.swing.JTextField();
         jButtonBorrar = new javax.swing.JButton();
+        jButtonLimpiar = new javax.swing.JButton();
+        jButtonActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +139,20 @@ public class VistaBorrar extends javax.swing.JFrame {
             }
         });
 
+        jButtonLimpiar.setText("LIMPIAR");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
+
+        jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,11 +169,15 @@ public class VistaBorrar extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2)
                         .addGap(33, 33, 33)
-                        .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButtonActualizar)))
                 .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jButtonBorrar)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonLimpiar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonVolver)
                 .addGap(77, 77, 77))
@@ -156,14 +189,16 @@ public class VistaBorrar extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonActualizar))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVolver)
-                    .addComponent(jButtonBorrar))
+                    .addComponent(jButtonBorrar)
+                    .addComponent(jButtonLimpiar))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -192,6 +227,19 @@ public class VistaBorrar extends javax.swing.JFrame {
             Logger.getLogger(VistaBorrar.class.getName()).log(Level.SEVERE, null, ex);
         }}
     }//GEN-LAST:event_jButtonBorrarActionPerformed
+
+    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+        // TODO add your handling code here:
+        jTextFieldCodigo.setText(null);
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
+
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+        try {
+            llenarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaBorrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,7 +281,9 @@ public class VistaBorrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonActualizar;
     private javax.swing.JButton jButtonBorrar;
+    private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

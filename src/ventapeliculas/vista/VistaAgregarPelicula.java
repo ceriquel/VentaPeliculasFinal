@@ -112,6 +112,11 @@ public class VistaAgregarPelicula extends javax.swing.JFrame {
         });
 
         jButtonLimpiar.setText("LIMPIAR");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
 
         jButtonVolver.setText("VOLVER");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -233,6 +238,13 @@ public class VistaAgregarPelicula extends javax.swing.JFrame {
     private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
+
+    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+        // TODO add your handling code here:
+        jTextFieldNombrePelicula.setText(null);
+        jTextFieldPrecio.setText(null);
+        jComboBoxCategoria.setSelectedItem("..");
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     /**
      * @param args the command line arguments

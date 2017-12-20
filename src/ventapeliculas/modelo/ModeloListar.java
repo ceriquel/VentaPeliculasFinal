@@ -83,4 +83,29 @@ public class ModeloListar {
         }
         return listPelicula;
     }
+    
+    public ArrayList<Pelicula> getListadoPeliculaCategoria(String categoria) throws SQLException{
+        ArrayList<Pelicula> listPelicula = null;
+        System.out.println("ok");
+        String sql="SELECT PP.CODIGO, PP.NOMBRE, PP.PRECIO, PP.FORMATO4K, CC.NOMBRE_CATEGORIA FROM PELICULA PP JOIN CATEGORIA CC ON PP.ID_CATEGORIA=CC.ID_CATEGORIA WHERE CC.NOMBRE_CATEGORIA='"+categoria+"'";
+        PreparedStatement preparedStatement;
+        try {
+            listPelicula=new ArrayList<>();
+            preparedStatement = Conexion.getInstance().prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            Pelicula pelicula = new Pelicula();
+            pelicula.setCodigo(resultSet.getInt("CODIGO"));
+            pelicula.setNombre(resultSet.getString("NOMBRE"));
+            pelicula.setPrecio(resultSet.getInt("PRECIO"));
+            pelicula.setFormato4k(resultSet.getString("FORMATO4K"));
+            pelicula.setIdCatalogo(resultSet.getString("NOMBRE_CATEGORIA"));
+            
+            listPelicula.add(pelicula);
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(ModeloListar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listPelicula;
+    }
 }
